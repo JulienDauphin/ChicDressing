@@ -14,9 +14,88 @@ Text Domain:	 chicdressing
     Add your custom styles here
 */
 
+@font-face {
+    font-family: 'Kalam';
+    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/Kalam-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'OpenSans';
+    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Playfair';
+    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+}
+
+.post-meta,
+.ashe-widget > ul li span,
+.ashe-widget > ul li span a,
+#wp-calendar thead th,
+#wp-calendar caption,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+#reply-title,
+#reply-title a {
+    font-family: 'Playfair', sans-serif;
+}
+
+blockquote p {
+    font-family: 'Playfair', sans-serif;
+}
+
+input,
+textarea,
+select {
+  font-family: 'OpenSans', sans-serif;
+}
+
+#featured-links h6 {
+    font-family: 'OpenSans', sans-serif;
+}
+
+.no-result-found h3 {
+    font-family: 'OpenSans', sans-serif;
+}
+
+.related-posts h3 {
+    font-family: 'OpenSans', sans-serif;
+}
+
+.comment-author {
+    font-family: 'OpenSans', sans-serif;
+}
+
+.instagram-title h2 {
+    font-family: 'OpenSans', sans-serif;
+}
+
+.widget_wysija_cont .updated,
+.widget_wysija_cont .error,
+.widget_wysija_cont .xdetailed-errors {
+    font-family: 'OpenSans', sans-serif;
+}
+
+body,
+.page-404 h2,
+.comment-author {
+    font-family: 'OpenSans', sans-serif;
+}
+
+.upsells.products > h2,
+.crosssells.products > h2,
+.related.products > h2 {
+    font-family: 'OpenSans', sans-serif;
+}
+
 
 body .page-content, .page-content select, .page-content input, .page-content textarea, .page-content .post-author a, .page-content .ashe-widget a, .page-content .comment-author {
-    color: #a5a5a5;
+    color: black;
     font-size: 12px;
 }
 
@@ -50,7 +129,7 @@ body .header-logo a{
     padding:0 40px;
 }
 .chic-title{
-    font-family: 'Kalam';
+    font-family: 'Kalam', sans-serif;
     font-size: 52px;
     text-decoration: inherit;
     text-transform: uppercase;
@@ -64,3 +143,8 @@ body .header-logo a{
     background: #f6f6f6;
     padding-bottom: 20px;
 }
+
+.rpwwt-post-categories, .post-date{
+    color : black!important;
+}
+
