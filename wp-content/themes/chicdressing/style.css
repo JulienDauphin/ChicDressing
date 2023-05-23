@@ -9,14 +9,9 @@ Version:		 1.0.0
 Text Domain:	 chicdressing
 */
 
-
-/*
-    Add your custom styles here
-*/
-
 @font-face {
     font-family: 'Kalam';
-    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/Kalam-Regular.ttf') format('truetype');
+    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/Kalam-Regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -41,70 +36,43 @@ h4,
 h5,
 h6,
 #reply-title,
-#reply-title a {
-    font-family: 'Playfair', sans-serif;
-}
-
+#reply-title a,
 blockquote p {
     font-family: 'Playfair', sans-serif;
 }
 
 input,
 textarea,
-select {
-  font-family: 'OpenSans', sans-serif;
-}
-
-#featured-links h6 {
-    font-family: 'OpenSans', sans-serif;
-}
-
-.no-result-found h3 {
-    font-family: 'OpenSans', sans-serif;
-}
-
-.related-posts h3 {
-    font-family: 'OpenSans', sans-serif;
-}
-
-.comment-author {
-    font-family: 'OpenSans', sans-serif;
-}
-
-.instagram-title h2 {
-    font-family: 'OpenSans', sans-serif;
-}
-
+select,
+#featured-links h6,
+#featured-links h6,
+.no-result-found h3,
+.related-posts h3,
+.comment-author,
+.instagram-title h2
 .widget_wysija_cont .updated,
 .widget_wysija_cont .error,
-.widget_wysija_cont .xdetailed-errors {
-    font-family: 'OpenSans', sans-serif;
-}
-
+.widget_wysija_cont .xdetailed-errors,
 body,
 .page-404 h2,
-.comment-author {
-    font-family: 'OpenSans', sans-serif;
-}
-
 .upsells.products > h2,
 .crosssells.products > h2,
-.related.products > h2 {
-    font-family: 'OpenSans', sans-serif;
+.related.products > h2
+ {
+  font-family: 'OpenSans', sans-serif;
 }
-
 
 body .page-content, .page-content select, .page-content input, .page-content textarea, .page-content .post-author a, .page-content .ashe-widget a, .page-content .comment-author {
     color: black;
     font-size: 12px;
 }
 
-
 body .header-logo a{
     color: white;
     text-shadow: 2px 3px 5px #d0527a;
     transform: rotate(-9deg);
 }
+
 .text-center{
     text-align:center;
 }
@@ -147,4 +115,5 @@ body .header-logo a{
 .rpwwt-post-categories, .post-date{
     color : black!important;
 }
+
 

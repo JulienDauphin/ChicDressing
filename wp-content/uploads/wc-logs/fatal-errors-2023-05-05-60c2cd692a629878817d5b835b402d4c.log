@@ -1,0 +1,16 @@
+2023-05-05T10:12:26+00:00 CRITICAL Uncaught Error: Call to undefined function opcache_reset() in C:\MAMP\htdocs\chicdressing\wp-content\plugins\nginx-helper\admin\class-fastcgi-purger.php:180
+Stack trace:
+#0 C:\MAMP\htdocs\chicdressing\wp-content\plugins\nginx-helper\admin\class-nginx-helper-admin.php(752): FastCGI_Purger->purge_all()
+#1 C:\MAMP\htdocs\chicdressing\wp-includes\class-wp-hook.php(308): Nginx_Helper_Admin->purge_all('')
+#2 C:\MAMP\htdocs\chicdressing\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters('', Array)
+#3 C:\MAMP\htdocs\chicdressing\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\MAMP\htdocs\chicdressing\wp-includes\class-wp-admin-bar.php(87): do_action('admin_bar_init')
+#5 C:\MAMP\htdocs\chicdressing\wp-includes\admin-bar.php(49): WP_Admin_Bar->initialize()
+#6 C:\MAMP\htdocs\chicdressing\wp-includes\class-wp-hook.php(308): _wp_admin_bar_init('')
+#7 C:\MAMP\htdocs\chicdressing\wp-includes\class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#8 C:\MAMP\htdocs\chicdressing\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#9 C:\MAMP\htdocs\chicdressing\wp-admin\admin.php(175): do_action('admin_init')
+#10 C:\MAMP\htdocs\chicdressing\wp-admin\index.php(10): require_once('C:\\MAMP\\htdocs\\...')
+#11 {main}
+  thrown dans C:\MAMP\htdocs\chicdressing\wp-content\plugins\nginx-helper\admin\class-fastcgi-purger.php à la ligne 180
+
