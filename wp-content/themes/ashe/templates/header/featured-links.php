@@ -15,7 +15,7 @@ $featured_links_image_3 = wp_get_attachment_image_src( ashe_options( 'featured_l
 		<a href="<?php echo esc_url( ashe_options( 'featured_links_url_1' ) ); ?>">
 			<div class="cv-outer">
 				<div class="cv-inner">
-					<h6><?php echo esc_html( ashe_options( 'featured_links_title_1' ) ); ?></h6>
+					<h3><?php echo esc_html( ashe_options( 'featured_links_title_1' ) ); ?></h3>
 				</div>
 			</div>
 		</a>
@@ -29,7 +29,7 @@ $featured_links_image_3 = wp_get_attachment_image_src( ashe_options( 'featured_l
 		<a href="<?php echo esc_url( ashe_options( 'featured_links_url_2' ) ); ?>">
 			<div class="cv-outer">
 				<div class="cv-inner">
-					<h6><?php echo esc_html( ashe_options( 'featured_links_title_2' ) ); ?></h6>
+					<h3><?php echo esc_html( ashe_options( 'featured_links_title_2' ) ); ?></h3>
 				</div>
 			</div>
 		</a>
@@ -43,7 +43,7 @@ $featured_links_image_3 = wp_get_attachment_image_src( ashe_options( 'featured_l
 		<a href="<?php echo esc_url( ashe_options( 'featured_links_url_3' ) ); ?>">
 			<div class="cv-outer">
 				<div class="cv-inner">
-					<h6><?php echo esc_html( ashe_options( 'featured_links_title_3' ) ); ?></h6>
+					<h3><?php echo esc_html( ashe_options( 'featured_links_title_3' ) ); ?></h3>
 				</div>
 			</div>
 		</a>

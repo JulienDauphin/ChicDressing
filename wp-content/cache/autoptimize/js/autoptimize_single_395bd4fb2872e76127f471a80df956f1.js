@@ -1,1 +1,0 @@
-var divElement=document.getElementById('chic-fashionweek-map');if(divElement){var iframe=divElement.querySelector('iframe');if(iframe){iframe.setAttribute('name','map-google');}}

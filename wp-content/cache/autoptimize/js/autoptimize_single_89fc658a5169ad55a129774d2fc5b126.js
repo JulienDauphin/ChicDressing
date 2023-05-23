@@ -1,1 +1,0 @@
-var iframe=document.querySelector('div.boxed-wrapper iframe');if(iframe){iframe.setAttribute('name','google-map');}

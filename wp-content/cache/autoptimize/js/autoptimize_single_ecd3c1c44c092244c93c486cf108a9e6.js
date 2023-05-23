@@ -1,1 +1,0 @@
-var iframe=document.querySelector('div.gm-style iframe');if(iframe){iframe.setAttribute('name','nom_de_votre_choix');}

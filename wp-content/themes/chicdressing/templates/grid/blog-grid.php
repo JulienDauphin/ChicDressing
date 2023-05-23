@@ -8,10 +8,11 @@
 		get_template_part( 'templates/grid/category', 'description' );
 	}
 
+	
+	// On ajoute un titre à la section blog
+	echo '<h2 id="leblog" class="chic-title">Dernières publications </h2>';
 	// Blog Grid
 	echo '<ul class="blog-grid">';
-	// On ajoute un titre à la section blog
-	echo '<h1 id="leblog" class="chic-title">Dernières publications </h1>';
 
 	if ( have_posts() ) :
 
@@ -31,7 +32,7 @@
 			<article id="post-<?php the_ID(); ?>" <?php post_class($post_class); ?>>
 
 				<div class="post-media">
-					<a href="<?php echo esc_url( get_permalink() ); ?>"></a>
+					<a href="<?php echo esc_url( get_permalink() ); ?>" aria-label="Photos de la page d'accueil" alt="Photos de la page d'accueil" label="Photos de la page d'accueil"></a>
 					<?php the_post_thumbnail('full'); ?>
 				</div>
 

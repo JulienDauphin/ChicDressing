@@ -1,10 +1,6 @@
 <?php
 namespace Automattic\WooCommerce\Blocks\BlockTypes;
 
-use Automattic\WooCommerce\Blocks\Package;
-use Automattic\WooCommerce\Blocks\Assets;
-use Automattic\WooCommerce\Blocks\Assets\AssetDataRegistry;
-use Automattic\WooCommerce\StoreApi\Utilities\CartController;
 use Automattic\WooCommerce\Blocks\Utils\StyleAttributesUtils;
 
 /**
@@ -52,12 +48,12 @@ class MiniCartContents extends AbstractBlock {
 	/**
 	 * Render the markup for the Mini Cart contents block.
 	 *
-	 * @param array  $attributes Block attributes.
-	 * @param string $content    Block content.
-	 *
+	 * @param array    $attributes Block attributes.
+	 * @param string   $content    Block content.
+	 * @param WP_Block $block      Block instance.
 	 * @return string Rendered block type output.
 	 */
-	protected function render( $attributes, $content ) {
+	protected function render( $attributes, $content, $block ) {
 		if ( is_admin() || WC()->is_rest_api_request() ) {
 			// In the editor we will display the placeholder, so no need to
 			// print the markup.
@@ -88,20 +84,15 @@ class MiniCartContents extends AbstractBlock {
 				),
 			),
 			array(
-				'selector'   => '.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-cart.wc-block-components-button',
-				'properties' => array(
-					array(
-						'property' => 'color',
-						'value'    => $text_color ? $text_color['value'] : false,
-					),
-					array(
-						'property' => 'border-color',
-						'value'    => $text_color ? $text_color['value'] : false,
-					),
+				'selector'   => array(
+					'.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout',
+					'.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout:hover',
+					'.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout:focus',
+					'.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-cart.wc-block-components-button:hover',
+					'.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-cart.wc-block-components-button:focus',
+					'.wc-block-mini-cart__shopping-button a:hover',
+					'.wc-block-mini-cart__shopping-button a:focus',
 				),
-			),
-			array(
-				'selector'   => '.wc-block-mini-cart__footer .wc-block-mini-cart__footer-actions .wc-block-mini-cart__footer-checkout',
 				'properties' => array(
 					array(
 						'property' => 'color',
@@ -122,6 +113,8 @@ class MiniCartContents extends AbstractBlock {
 		$parsed_style = '';
 
 		foreach ( $styles as $style ) {
+			$selector = is_array( $style['selector'] ) ? implode( ',', $style['selector'] ) : $style['selector'];
+
 			$properties = array_filter(
 				$style['properties'],
 				function( $property ) {
@@ -130,11 +123,11 @@ class MiniCartContents extends AbstractBlock {
 			);
 
 			if ( ! empty( $properties ) ) {
-				$parsed_style .= $style['selector'] . '{' . PHP_EOL;
+				$parsed_style .= $selector . '{';
 				foreach ( $properties as $property ) {
-					$parsed_style .= $property['property'] . ':' . $property['value'] . ';' . PHP_EOL;
+					$parsed_style .= sprintf( '%1$s:%2$s;', $property['property'], $property['value'] );
 				}
-				$parsed_style .= '}' . PHP_EOL;
+				$parsed_style .= '}';
 			}
 		}
 
@@ -143,4 +136,27 @@ class MiniCartContents extends AbstractBlock {
 			$parsed_style
 		);
 	}
+
+	/**
+	 * Get list of Mini Cart block & its inner-block types.
+	 *
+	 * @return array;
+	 */
+	public static function get_mini_cart_block_types() {
+		$block_types = [];
+
+		$block_types[] = 'MiniCartContents';
+		$block_types[] = 'EmptyMiniCartContentsBlock';
+		$block_types[] = 'FilledMiniCartContentsBlock';
+		$block_types[] = 'MiniCartFooterBlock';
+		$block_types[] = 'MiniCartItemsBlock';
+		$block_types[] = 'MiniCartProductsTableBlock';
+		$block_types[] = 'MiniCartShoppingButtonBlock';
+		$block_types[] = 'MiniCartCartButtonBlock';
+		$block_types[] = 'MiniCartCheckoutButtonBlock';
+		$block_types[] = 'MiniCartTitleBlock';
+
+		return $block_types;
+	}
+
 }

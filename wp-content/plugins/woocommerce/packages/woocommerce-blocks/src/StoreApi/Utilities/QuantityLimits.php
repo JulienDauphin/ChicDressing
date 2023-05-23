@@ -24,7 +24,7 @@ final class QuantityLimits {
 		if ( ! $product instanceof \WC_Product ) {
 			return [
 				'minimum'     => 1,
-				'maximum'     => null,
+				'maximum'     => 9999,
 				'multiple_of' => 1,
 				'editable'    => true,
 			];
@@ -133,14 +133,14 @@ final class QuantityLimits {
 	/**
 	 * Get the limit for the total number of a product allowed in the cart.
 	 *
-	 * This is based on product properties, including remaining stock, and defaults to a maximum of 99 of any product
+	 * This is based on product properties, including remaining stock, and defaults to a maximum of 9999 of any product
 	 * in the cart at once.
 	 *
 	 * @param \WC_Product $product Product instance.
 	 * @return int
 	 */
 	protected function get_product_quantity_limit( \WC_Product $product ) {
-		$limits = [ 99 ];
+		$limits = [ 9999 ];
 
 		if ( $product->is_sold_individually() ) {
 			$limits[] = 1;
@@ -153,7 +153,9 @@ final class QuantityLimits {
 		 *
 		 * Filters the variation option name for custom option slugs.
 		 *
-		 * @param integer $quantity_limit Quantity limit which defaults to 99 unless sold individually.
+		 * @since 6.8.0
+		 *
+		 * @param integer $quantity_limit Quantity limit which defaults to 9999 unless sold individually.
 		 * @param \WC_Product $product Product instance.
 		 * @return integer
 		 */
@@ -197,6 +199,8 @@ final class QuantityLimits {
 		 *
 		 * The suffix of the hook will vary depending on the value being filtered.
 		 * For example, minimum, maximum, multiple_of, editable.
+		 *
+		 * @since 6.8.0
 		 *
 		 * @param mixed $value The value being filtered.
 		 * @param \WC_Product $product The product object.

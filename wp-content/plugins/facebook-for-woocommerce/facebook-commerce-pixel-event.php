@@ -9,12 +9,9 @@
  * @package FacebookCommerce
  */
 
-use SkyVerge\WooCommerce\Facebook\Events\Event;
+use WooCommerce\Facebook\Events\Event;
 
-if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
-
-
-	class WC_Facebookcommerce_Pixel {
+class WC_Facebookcommerce_Pixel {
 
 
 		const SETTINGS_KEY     = 'facebook_config';
@@ -42,7 +39,7 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 		 *
 		 * @var array Cache array.
 		 */
-		public static $render_cache = array();
+		public static $render_cache = [];
 
 		/**
 		 * User information.
@@ -63,8 +60,7 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 		 *
 		 * @param array $user_info User information array.
 		 */
-		public function __construct( $user_info = array() ) {
-
+		public function __construct( $user_info = [] ) {
 			$this->user_info  = $user_info;
 			$this->last_event = '';
 		}
@@ -150,7 +146,7 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 			ob_start();
 
 			?>
-			<script <?php echo self::get_script_attributes(); ?>>
+			<script <?php echo self::get_script_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.Output ?>>
 				!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 					n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
 					n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
@@ -158,11 +154,11 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 					document,'script','https://connect.facebook.net/en_US/fbevents.js');
 			</script>
 			<!-- WooCommerce Facebook Integration Begin -->
-			<script <?php echo self::get_script_attributes(); ?>>
+			<script <?php echo self::get_script_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.Output ?>>
 
-				<?php echo $this->get_pixel_init_code(); ?>
+				<?php echo $this->get_pixel_init_code(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 
-				fbq( 'track', 'PageView', <?php echo json_encode( self::build_params( array(), 'PageView' ), JSON_PRETTY_PRINT | JSON_FORCE_OBJECT ); ?> );
+				fbq( 'track', 'PageView', <?php echo json_encode( self::build_params( [], 'PageView' ), JSON_PRETTY_PRINT | JSON_FORCE_OBJECT ); ?> );
 
 				document.addEventListener( 'DOMContentLoaded', function() {
 					jQuery && jQuery( function( $ ) {
@@ -229,24 +225,6 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 
 
 		/**
-		 * Determines if the last event in the current thread matches a given event.
-		 *
-		 * TODO remove this deprecated method by March 2020 or version 2.0.0 {FN 2020-03-25}.
-		 *
-		 * @deprecated since 1.11.0
-		 *
-		 * @param string $event_name Name of the event.
-		 * @return bool
-		 */
-		public function check_last_event( $event_name ) {
-
-			wc_deprecated_function( __METHOD__, '1.11.0', __CLASS__ . '::has_last_event()' );
-
-			return $this->is_last_event( $event_name );
-		}
-
-
-		/**
 		 * Gets the JavaScript code to track an event.
 		 *
 		 * Updates the last event property and returns the code.
@@ -286,8 +264,8 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 
 			?>
 			<!-- Facebook Pixel Event Code -->
-			<script <?php echo self::get_script_attributes(); ?>>
-				<?php echo $this->get_event_code( $event_name, $params, $method ); ?>
+			<script <?php echo self::get_script_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.Output ?>>
+				<?php echo $this->get_event_code( $event_name, $params, $method ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 			</script>
 			<!-- End Facebook Pixel Event Code -->
 			<?php
@@ -350,9 +328,9 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 
 			?>
 			<!-- Facebook Pixel Event Code -->
-			<script <?php echo self::get_script_attributes(); ?>>
+			<script <?php echo self::get_script_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.Output ?>>
 				document.addEventListener( '<?php echo esc_js( $listener ); ?>', function (event) {
-					<?php echo $code; ?>
+					<?php echo $code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 				}, false );
 			</script>
 			<!-- End Facebook Pixel Event Code -->
@@ -400,14 +378,14 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 
 			?>
 			<!-- Facebook Pixel Event Code -->
-			<script <?php echo self::get_script_attributes(); ?>>
-				function handle<?php echo $event_name; ?>Event() {
-					<?php echo $code; ?>
+			<script <?php echo self::get_script_attributes(); // phpcs:ignore WordPress.Security.EscapeOutput.Output ?>>
+				function handle<?php echo $event_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>Event() {
+					<?php echo $code; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					// Some weird themes (hi, Basel) are running this script twice, so two listeners are added and we need to remove them after running one.
-					jQuery( document.body ).off( '<?php echo esc_js( $listened_event ); ?>', handle<?php echo $event_name; ?>Event );
+					jQuery( document.body ).off( '<?php echo esc_js( $listened_event ); ?>', handle<?php echo $event_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>Event );
 				}
 
-				jQuery( document.body ).one( '<?php echo esc_js( $listened_event ); ?>', handle<?php echo $event_name; ?>Event );
+				jQuery( document.body ).one( '<?php echo esc_js( $listened_event ); ?>', handle<?php echo $event_name; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>Event );
 			</script>
 			<!-- End Facebook Pixel Event Code -->
 			<?php
@@ -495,7 +473,7 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 		 * @param string $event  The event name the params are for.
 		 * @return array
 		 */
-		private static function build_params( $params = array(), $event = '' ) {
+		private static function build_params( $params = [], $event = '' ) {
 
 			$params = array_replace( Event::get_version_info(), $params );
 
@@ -679,31 +657,14 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 		 * Get PixelID related settings.
 		 */
 		public static function get_options() {
-			return get_option(
-				self::SETTINGS_KEY,
-				array(
-					self::PIXEL_ID_KEY     => '0',
-					self::USE_PII_KEY      => 0,
-					self::USE_S2S_KEY      => false,
-					self::ACCESS_TOKEN_KEY => '',
-				)
+			return get_option( self::SETTINGS_KEY ) ?: array(
+				self::PIXEL_ID_KEY     => '0',
+				self::USE_PII_KEY      => 0,
+				self::USE_S2S_KEY      => false,
+				self::ACCESS_TOKEN_KEY => '',
 			);
 		}
 
-
-		/**
-		 * Gets Facebook Pixel base code.
-		 *
-		 * @deprecated since 1.10.2
-		 *
-		 * @return string
-		 */
-		public static function get_basecode() {
-
-			wc_deprecated_function( __METHOD__, '1.10.2' );
-
-			return '';
-		}
 
 		/**
 		 * Gets the logged in user info
@@ -714,5 +675,3 @@ if ( ! class_exists( 'WC_Facebookcommerce_Pixel' ) ) :
 			return $this->user_info;
 		}
 	}
-
-endif;
