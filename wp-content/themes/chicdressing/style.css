@@ -17,13 +17,13 @@ Text Domain:	 chicdressing
 
 @font-face {
     font-family: 'OpenSans';
-    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/OpenSans-Regular.ttf') format('truetype');
+    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/OpenSans-Regular.woff2') format('woff2');
     font-display: swap;
 }
 
 @font-face {
     font-family: 'Playfair';
-    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/PlayfairDisplay-Regular.ttf') format('truetype');
+    src: url('/chicdressing/wp-content/themes/chicdressing/fonts/PlayfairDisplay-Regular.woff2') format('woff2');
     font-display: swap;
 }
 

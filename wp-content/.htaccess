@@ -11,11 +11,6 @@
   RewriteRule (.+)\.jpg$ /chicdressing/wp-content/uploads-webpc/$1.jpg.avif [NC,T=image/avif,L]
   RewriteCond %{HTTP_ACCEPT} image/avif
   RewriteCond %{REQUEST_FILENAME} -f
-  RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.jpeg.avif -f [OR]
-  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.avif -f
-  RewriteRule (.+)\.jpeg$ /chicdressing/wp-content/uploads-webpc/$1.jpeg.avif [NC,T=image/avif,L]
-  RewriteCond %{HTTP_ACCEPT} image/avif
-  RewriteCond %{REQUEST_FILENAME} -f
   RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.png.avif -f [OR]
   RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.png.avif -f
   RewriteRule (.+)\.png$ /chicdressing/wp-content/uploads-webpc/$1.png.avif [NC,T=image/avif,L]
@@ -24,6 +19,11 @@
   RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.webp.avif -f [OR]
   RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.webp.avif -f
   RewriteRule (.+)\.webp$ /chicdressing/wp-content/uploads-webpc/$1.webp.avif [NC,T=image/avif,L]
+  RewriteCond %{HTTP_ACCEPT} image/avif
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.jpeg.avif -f [OR]
+  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.avif -f
+  RewriteRule (.+)\.jpeg$ /chicdressing/wp-content/uploads-webpc/$1.jpeg.avif [NC,T=image/avif,L]
 </IfModule>
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -35,11 +35,6 @@
   RewriteRule (.+)\.jpg$ /chicdressing/wp-content/uploads-webpc/$1.jpg.webp [NC,T=image/webp,L]
   RewriteCond %{HTTP_ACCEPT} image/webp
   RewriteCond %{REQUEST_FILENAME} -f
-  RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.jpeg.webp -f [OR]
-  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.webp -f
-  RewriteRule (.+)\.jpeg$ /chicdressing/wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,L]
-  RewriteCond %{HTTP_ACCEPT} image/webp
-  RewriteCond %{REQUEST_FILENAME} -f
   RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.png.webp -f [OR]
   RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.png.webp -f
   RewriteRule (.+)\.png$ /chicdressing/wp-content/uploads-webpc/$1.png.webp [NC,T=image/webp,L]
@@ -48,9 +43,14 @@
   RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.webp.webp -f [OR]
   RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.webp.webp -f
   RewriteRule (.+)\.webp$ /chicdressing/wp-content/uploads-webpc/$1.webp.webp [NC,T=image/webp,L]
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  RewriteCond %{REQUEST_FILENAME} -f
+  RewriteCond %{DOCUMENT_ROOT}/chicdressing/wp-content/uploads-webpc/$1.jpeg.webp -f [OR]
+  RewriteCond %{DOCUMENT_ROOT}/wp-content/uploads-webpc/$1.jpeg.webp -f
+  RewriteRule (.+)\.jpeg$ /chicdressing/wp-content/uploads-webpc/$1.jpeg.webp [NC,T=image/webp,L]
 </IfModule>
 <IfModule mod_headers.c>
-  <FilesMatch "(?i)\.(jpg|jpeg|png|webp)(\.(webp|avif))?$">
+  <FilesMatch "(?i)\.(jpg|png|webp|jpeg)(\.(webp|avif))?$">
     Header always set Cache-Control "private"
     Header append Vary "Accept"
   </FilesMatch>
